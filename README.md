@@ -24,7 +24,7 @@ Check this [link](https://github.com/peter3125/enhanced-subject-verb-object-extr
 I implement "gensim" library to generate Word2vec embeddings. To generate word2vec embeddings, follow the sample
 
 ```python
-python word_embeder.py --train_path source/train.csv --dict_path word2vec --tokenizer_name word_tokenizer --size 200 --window 5 --min_count 3
+python word_embeder.py --train_path source/train.csv --dict_path word2vec --size 200 --window 5 --min_count 3
 ```
 
 
