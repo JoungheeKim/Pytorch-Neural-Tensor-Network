@@ -23,26 +23,28 @@ There is a lot of options to check.
 3. dict_path : A Path of Word2vec model for embeddings of HAN model
 4. save_path : A Path to save result of HAN model
 5. max_sent_len : Maximum length of sentence to analysis ( Sentences of each document which is exceed to the limit is eliminated to train model )
-6. max_word_len : Maximum length of word to analysis ( Words of each sentence which is exceed to the limit is eliminated to train model )
-7. tokenizer_name : There is two tokenizing options ( "word_tokenizer", "gensim" )
+6. max_svo_len : Maximum length of word for each SVO(subject/object/verb) to analysis ( Words of each sentence which is exceed to the limit is eliminated to train model )
+7. tensor_dim : A Tensor size of model
 8. atten_size : A Attention size of model
 9. hidden_size : A hidden size of GRU model
 10. n_layers : A number of layers of GRU model
 11. n_epochs : A number of epoches to train
-12. lr : learning rate
-13. early_stop : A early_stop condition. If you don't want to use this options, put -1
-14. batch_size : Batch size to train
+12. dropout_p : dropout probability
+13. lr : learning rate
+14. early_stop : A early_stop condition. If you don't want to use this options, put -1
+15. batch_size : Batch size to train
 
 ```python
-python train.py --train_path source/train.csv --valid_path source/test.csv --dict_path word2vec/1 --tokenizer_name word_tokenizer --hidden_size 256 --atten_size 128 --min_count 3 --batch_size 16
+python train.py --train_path source/train.csv --valid_path source/test.csv --dict_path word2vec/1 --hidden_size 256 --atten_size 128 --  --batch_size 16
 ```
 
 ### Result
 Result with hyper parameter settings
 
-| word2vec dimention | hidden size | Best Epoch |  lr  | train loss | valid loss | valid accuracy |
-|--------------------|:-----------:|:----------:|:----:|:----------:|:----------:|:--------------:|
-| 200                |    128      |      3     |0.0001|   0.0159   |   0.0174   |     0.88168    |
+| word2vec dimention | hidden size | atten size | tesor size | Best Epoch |  lr  | train loss | valid loss | valid accuracy |
+|--------------------|:-----------:|:----------:|:----------:|:----------:|:----:|:----------:|:----------:|:---------------|
+| 200                |     64      |     64     |     64     |      1     |0.0001|   0.0396   |   0.0392   |     0.6459     |
+| 200                |    128      |    128     |    128     |      1     |0.0001|   0.0394   |   0.0385   |     0.6584     |
 
 
 ### Repo available online
@@ -58,7 +60,7 @@ Result with hyper parameter settings
 We got bad result with Neural Tensor Network(NTN) compare to other works like [HAN](https://github.com/JoungheeKim/Pytorch-Hierarchical-Attention-Network), [BERT](https://github.com/JoungheeKim/Pytorch-BERT-Classification). The reason we can find easily is that this model is highly depend on the 'SVO extractor'. If 'SVO extractor' is not good enough to catch valuable SVO(Subject/Verb/Object) in the sentences, other model in the pipeline will not guarante good result neither. Another reason we can guess is insufficient data to train  model. NTN model have a lot of parameters, because of unique structure(bidirectional batch multiplication). And NTN model decrease data from dataset to extract inputs, because of unique input structure(Subject/Verb/Object). Above reasons make it hard to get good result.
 
 
-You can see the [detail review]() of mine, if you are korean.
+You can see the [detail review](https://github.com/JoungheeKim/Pytorch-Neural-Tensor-Network/blob/master/REVIEW.md) of mine, if you are korean.
 
 
 
