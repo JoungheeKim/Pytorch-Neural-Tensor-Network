@@ -1,19 +1,24 @@
 # Pytorch-Neural-Tensor-Network
 This is pytorch implementation of [Neural Tensor Network (NTN)](http://ijcai.org/Proceedings/15/Papers/329.pdf) with Attention Model
 
+
 ### Dataset
 To test model, I use a dataset of 50,000 movie reviews taken from IMDb. 
 It is divied into 'train', 'test' dataset and each data has 25,000 movie reviews and labels(positive, negetive).
 You can access to dataset with this [link](http://ai.stanford.edu/~amaas/data/sentiment/)
 
+
 ### Reference
 This project is highly depend on "SVO extractor". Thanks to wonderful [work](https://github.com/peter3125/enhanced-subject-verb-object-extraction) from "peter3125" which can extract triple set(subject, object, verb) very easily, I can make pipeline by including his open source. So someone who try this project should contact his repository to download resource.
+
 
 ### How to use it?
 Follow the example
 
+
 #### 1 Download "SVO extractor"
 Check this [link](https://github.com/peter3125/enhanced-subject-verb-object-extraction) to download "SVO extractor" and make folder "extractor" to put downloaded resources.
+
 
 #### 2 Generate Word2Vec Embeddings
 I implement "gensim" library to generate Word2vec embeddings. To generate word2vec embeddings, follow the sample
@@ -21,6 +26,7 @@ I implement "gensim" library to generate Word2vec embeddings. To generate word2v
 ```python
 python word_embeder.py --train_path source/train.csv --dict_path word2vec --tokenizer_name word_tokenizer --size 200 --window 5 --min_count 3
 ```
+
 
 #### 3 Train Model
 There is a lot of options to check.
@@ -44,6 +50,7 @@ There is a lot of options to check.
 python train.py --train_path source/train.csv --valid_path source/test.csv --dict_path word2vec/1 --hidden_size 256 --atten_size 128 --batch_size 16
 ```
 
+
 ### Result
 Result with hyper parameter settings
 
@@ -61,10 +68,8 @@ Result with hyper parameter settings
     - [Sentiment-Analysis-in-Event-Driven-Stock-Price-Movement-Prediction](https://github.com/WayneDW/Sentiment-Analysis-in-Event-Driven-Stock-Price-Movement-Prediction)
 3. Text Classification with CNN
     - [cnn-text-classification-pytorch](https://github.com/Shawn1993/cnn-text-classification-pytorch)
-    
-### Reference
-
-    
+      
+      
 ### Comment
 We got bad result with Neural Tensor Network(NTN) compare to other works like [HAN](https://github.com/JoungheeKim/Pytorch-Hierarchical-Attention-Network), [BERT](https://github.com/JoungheeKim/Pytorch-BERT-Classification). The reason we can find easily is that this model is highly depend on the 'SVO extractor'. If 'SVO extractor' is not good enough to catch valuable SVO(Subject/Verb/Object) in the sentences, other model in the pipeline will not guarante good result neither. Another reason we can guess is insufficient data to train  model. NTN model have a lot of parameters, because of unique structure(bidirectional batch multiplication). And NTN model decrease data from dataset to extract inputs, because of unique input structure(Subject/Verb/Object). Above reasons make it hard to get good result.
 
