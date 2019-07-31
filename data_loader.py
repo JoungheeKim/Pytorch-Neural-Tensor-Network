@@ -102,7 +102,7 @@ class MyDataLoader():
                     assert not (len(temp_s)==0 or len(temp_v)==0 or len(temp_o)==0), "Should not happen!!! Error"
                     temp_s = [self.model.word2index.get(word) if self.model.word2index.get(word) else 0 for word in temp_s][:self.max_svo_len]
                     temp_v = [self.model.word2index.get(word) if self.model.word2index.get(word) else 0 for word in temp_v][:self.max_svo_len]
-                    temp_o = [self.model.word2index.get(word) if self.model.word2index.get(word) else 0 for word in temp_v][:self.max_svo_len]
+                    temp_o = [self.model.word2index.get(word) if self.model.word2index.get(word) else 0 for word in temp_o][:self.max_svo_len]
                     temp_svo_len.append([len(temp_s), len(temp_v), len(temp_o)])
                     temp_svo.extend(temp_s)
                     temp_svo.extend(temp_v)
