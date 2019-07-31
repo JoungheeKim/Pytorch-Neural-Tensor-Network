@@ -54,7 +54,7 @@ Result with hyper parameter settings
 3. Text Classification with CNN
     - [cnn-text-classification-pytorch](https://github.com/Shawn1993/cnn-text-classification-pytorch)
     
-### Commend
+### Comment
 We got bad result with Neural Tensor Network(NTN) compare to other works like [HAN](https://github.com/JoungheeKim/Pytorch-Hierarchical-Attention-Network), [BERT](https://github.com/JoungheeKim/Pytorch-BERT-Classification). The reason we can find easily is that this model is highly depend on the 'SVO extractor'. If 'SVO extractor' is not good enough to catch valuable SVO(Subject/Verb/Object) in the sentences, other model in the pipeline will not guarante good result neither. Another reason we can guess is insufficient data to train  model. NTN model have a lot of parameters, because of unique structure(bidirectional batch multiplication). And NTN model decrease data from dataset to extract inputs, because of unique input structure(Subject/Verb/Object). Above reasons make it hard to get good result.
 
 
